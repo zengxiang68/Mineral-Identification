@@ -2,11 +2,51 @@
 
 This repo provides the dataset and code for reproducing the experiments in paper ---- Mineral Identification Based on Deep Learning That Combines Image and Mohs Hardness.
 
+
+
 ## Data
 
 * We crawled 36 species of mineral images from the [mindat](https://www.mindat.org) website, a total of 183,688 images. 
 * The specific species are as follows: Agate, Albite, Almandine, Anglesite, Azurite, Beryl, Cassiterite, Chalcopyrite, Cinnabar, Copper, Demantoid, Diopside, Elbaite, Epidote, Fluorite, Galena, Gold, Halite, Hematite, Magnetite, Malachite, Marcasite, Opal, Orpiment, Pyrite, Quartz, Rhodochrosite, Ruby, Sapphire, Schorl, Sphalerite, Stibnite, Sulphur, Topaz, Torbernite, Wulfenite.
 * Also in order not to cause too much load burden on mindat, and to provide convenience to colleagues in the mineral identification field, we shared this dataset in this repo. [download link](https://drive.google.com/file/d/1uzhhvcQ8QKLE3O87udFYGc_ehqRwwppj/view).
+
+
+
+## How to run code
+
+#### Dependency
+
+* pytorch
+
+#### Run
+
+* If you have only one GPU, you can run `EfficientNet_36classes_trainABatch_ValABatch.py` and `EfficientNet_hardness_36classes_trainABatch_ValABatch.py` directly.
+
+  ```bash
+  # in bash
+  python EfficientNet_36classes_trainABatch_ValABatch.py
+  ```
+
+  ```bash
+  # in bash
+  python EfficientNet_hardness_36classes_trainABatch_ValABatch.py
+  ```
+
+* If you have more than one GPU, you can use distributed training.
+
+  ```bash
+  # in bash
+  # nproc_per_node is your GPU nums
+  python -m torch.distributed.launch --nproc_per_node=2 EfficientNet_36classes_trainABatch_ValABatch.py
+  ```
+
+  ```bash
+  # in bash
+  # nproc_per_node is your GPU nums
+  python -m torch.distributed.launch --nproc_per_node=2 EfficientNet_hardness_36classes_trainABatch_ValABatch.py
+  ```
+
+  
 
 ## Application
 
