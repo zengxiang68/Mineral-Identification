@@ -158,12 +158,17 @@ def train_and_val(train_loader, model, cost, optimizer, epochs):
     with open(os.path.join(log_dir, "val_acc1.txt"), mode='a') as f:
         f.write(str(val_acc1_ls) + '\n')
         f.flush()
-    ave_loss = sum(train_loss_ls) / len(train_loss_ls)
-    ave_acc1 = sum(acc1_ls) / len(acc1_ls)
-    print('-'*5)
-    print("for this epoch")
-    print("average loss : {:.3f}".format(ave_loss))
-    print("average acc1 : {:.2f}".format(ave_acc1))
+    ave_train_loss = sum(train_loss_ls) / len(train_loss_ls)
+    ave_train_acc1 = sum(acc1_ls) / len(acc1_ls)
+    ave_val_acc1 = sum(val_acc1_ls) / len(val_acc1_ls)
+
+    if distributed and args.local_rank != 0:
+        return val_acc1_ls
+    logger.info('-'*5)
+    logger.info("for this epoch")
+    logger.info("average train loss : {:.3f}".format(ave_train_loss))
+    logger.info("average train acc1 : {:.2f}".format(ave_train_acc1))
+    logger.info("average val acc1 : {:.2f}".format(ave_val_acc1))
     return val_acc1_ls
 
 
