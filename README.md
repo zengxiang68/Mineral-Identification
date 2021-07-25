@@ -1,6 +1,6 @@
 # Mineral-Identification
 
-This repo provides the dataset and code for reproducing the experiments in paper ---- Mineral Identification Based on Deep Learning That Combines Image and Mohs Hardness.
+This repo provides the dataset and code for reproducing the experiments in paper ---- [Mineral Identification Based on Deep Learning That Combines Image and Mohs Hardness](https://www.mdpi.com/2075-163X/11/5/506/htm).
 
 
 
